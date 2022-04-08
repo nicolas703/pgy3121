@@ -1,0 +1,323 @@
+html {
+    background-color: #242424;
+}
+
+.centrar {
+    display: flex;
+    justify-content: center;
+}
+
+.color-base {
+    background-color: black !important;
+}
+
+.color-base-gris {
+    background-color: #242424;
+}
+
+.color-base-letra {
+    color: #FFFFFF;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50% !important;
+    background-color: #E63138 !important;
+    border: 1px solid grey !important;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.footer {
+    position: fixed !important;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    height: 60px !important;
+    align-items: center;
+}
+
+.nav-bar-css {
+    background-color: #242424 !important;
+}
+
+.col-persolanizado {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    background-color: #242424;
+}
+
+.col-personalizado-sebas {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    background-color: #242424;
+    margin-bottom: 80px;
+}
+
+.m-navbar {
+    padding: 0.5rem 2rem !important;
+}
+
+.carousel-buttons {
+    opacity: 0 !important;
+}
+
+.card-personalizado {
+    margin-top: 70px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+.alto {
+    height: auto;
+}
+
+.form-suscripcion {
+    width: 600px;
+    margin: 20px;
+    margin-top: 70px;
+    margin-bottom: 200px;
+}
+
+.form-text-personalizado {
+    margin-top: 30px;
+
+}
+
+.centrar-boton {
+    display: flex;
+    justify-content: center;
+}
+
+.img-carrusel {
+    height: 520px;
+}
+
+.img-card-home {
+    height: 443px !important;
+}
+
+.img-standly {
+    height: 362px !important;
+    margin-bottom: 40px;
+}
+
+.img-card-artista {
+    height: 910px !important;
+    width: 774px !important;
+}
+
+.artista-der {
+    width: 67% !important;
+    overflow: hidden !important;
+}
+
+.artista-izq {
+    width: 67% !important;
+    overflow: hidden !important;
+
+}
+
+.img-artista {
+    height: 910px !important;
+    width: 742px !important;
+}
+
+.row-personalizado-card {
+    height: 550px;
+}
+
+.card-noticia {
+    width: 800px !important;
+    background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-nosotros {
+    width: 800px !important;
+    background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 200px;
+}
+
+.imagen-batiste {
+    width: 770px;
+    height: 600px;
+}
+
+.card-personalizado-derecha {
+    margin-top: 70px;
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-left: 400px;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+.card-personalizado-izquierda {
+    margin-top: 70px;
+    margin-right: 400px;
+    margin-bottom: 50px;
+    margin-left: 000px;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+.titulo-blanco {
+    color: #FFFFFF !important;
+    margin-top: 60px;
+}
+
+
+.card-artista-derecha {
+    margin-top: 70px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+    margin-left: 10px !important;
+    border: none !important;
+}
+
+.card-artista-izquierda {
+    margin-top: 70px;
+    margin-right: 0px;
+    margin-bottom: 50px;
+    margin-left: 200px;
+    border: none !important;
+}
+
+.noticias {
+    width: 100%;
+}
+
+.sale-arriba {
+    margin-bottom: -50px;
+}
+
+.sale-abajo {
+    margin-top: 30px;
+}
+
+.input-personalizado{
+    margin-top: 10px;
+}
+
+.escritorio {
+    display: block;
+}
+
+.escritoriont {
+    display: none !important;
+}
+
+/* Telefono */
+@media (min-width: 0px) and (max-width: 420px) {
+    .escritorio {
+        display: none !important;
+    }
+
+    .escritoriont {
+        display: -webkit-box !important;
+    }
+
+    .img-carrusel {
+        height: 506px !important;
+    }
+
+    .card-personalizado {
+        width: 300px !important;
+        height: 85% !important;
+        margin-left: 15% !important;
+    }
+
+    .card-artista-esteban-alejandro {
+        margin-top: 70px;
+        margin-right: 200px;
+        margin-bottom: 50px;
+        margin-left: 15% !important;
+        border: none !important;
+        overflow: hidden !important;
+        width: 300px !important;
+        height: 90% !important;
+    }
+
+    .row-personalizado-card{
+        margin-bottom: 36px !important;
+    }
+
+    .row-final-noticias{
+        margin-bottom: 58px !important;
+    }
+
+    .carrusel-telefono{
+        height: 234px;
+    }
+
+    .logo {
+        width: 38px;
+        height: 38px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .card-nosotros{
+        margin: 25px !important;
+    }
+
+    .form-suscripcion{
+        width: 74% !important;
+    }
+}
+
+/* Tablet */
+@media (min-width: 420px) and (max-width: 900px) {
+    .escritorio {
+        display: none !important;
+    }
+
+    .escritoriont {
+        display: block !important;
+    }
+
+    .img-carrusel {
+        height: 506px !important;
+    }
+
+    .card-personalizado {
+        width: 500px !important;
+        height: 85% !important;
+    }
+
+    .card-artista-esteban-alejandro {
+        margin-top: 70px;
+        margin-right: 200px;
+        margin-bottom: 50px;
+        margin-left: 200px;
+        border: none !important;
+        overflow: hidden !important;
+        width: 500px !important;
+        height: 90% !important;
+    }
+
+    .row-personalizado-card{
+        margin-bottom: 36px !important;
+    }
+
+    .row-final-noticias{
+        margin-bottom: 58px !important;
+    }
+}
+
