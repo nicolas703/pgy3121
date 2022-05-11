@@ -33,32 +33,41 @@
       src="https://kit.fontawesome.com/a61e80b5ac.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script script="javascript">
-      const expresionRegular =
-        /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-      const validarDatos = () => {
-        const datos = {
-          nombre: document.getElementById("nombre").value,
-          apellido: document.getElementById("apellido").value,
-          telefono: document.getElementById("telefono").value,
-          email: document.getElementById("email").value,
-          contrasena: document.getElementById("contrasena").value,
-        };
-        console.log(datos.contrasena.length);
-        if (!datos.nombre) {
-          alert("Debe ingresar nombre");
-        } else if (!datos.apellido) {
-          alert("Debe ingresar apellido");
-        } else if (!datos.telefono || datos.telefono.length !== 9) {
-          alert("Debe ingresar telefono");
-        } else if (!datos.email || !expresionRegular.test(datos.email)) {
-          alert("Debe ingresar un email válido");
-        } else if (!datos.contrasena || datos.contrasena.length < 8) {
-          alert("Debe ingresar contraseña de 8 caracteres mínimo");
-        } else {
-          alert("Registrado correctamente");
-        }
-      };
+      $(document).ready(function () {
+        $("#login").validate({
+          rules: {
+            emailInicioSesion: {
+              required: {
+                depends: function () {
+                  $(this).val($.trim($(this).val()));
+                  return true;
+                },
+              },
+            },
+            contrasenaInicioSesion: {
+              required: {
+                depends: function () {
+                  $(this).val($.trim($(this).val()));
+                  return true;
+                },
+              },
+              minlength: 8,
+            },
+          },
+          messages: {
+            emailInicioSesion: "Debe ingresar un email válido",
+            contrasenaInicioSesion: {
+              required: "Debe ingresar una contraseña",
+              minlength: "Su contraseña debe tener a lo menos 8 caracteres",
+            },
+          },
+          submitHandler: function (form) {
+            form.submit();
+          },
+        });
+      });
     </script>
   </head>
 
@@ -106,73 +115,33 @@
       <!-- Formulario -->
       <div class="row">
         <div class="col-lg-12 col-persolanizado">
-          <form class="form-suscripcion mx-auto">
+          <form class="form-suscripcion mx-auto" id="login">
             <div class="tittle-personalizado">
-              <h1 class="text-center color-base-letra">SUSCRIBETE</h1>
-            </div>
-            <div class="form-text-personalizado text-center color-base-letra">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Corrupti, dignissimos nemo ducimus sunt vitae cum quaerat
-                aperiam numquam. Eum, provident laudantium temporibus laborum
-                earum aliquid recusandae tempore cumque! Corrupti, dignissimos.
-              </p>
+              <h1 class="text-center color-base-letra">Iniciar Sesión</h1>
             </div>
             <div class="form-group color-base-letra">
               <label class="input-personalizado" for="exampleInputEmail1 "
-                >Nombre</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
-                >Apellido</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="apellido"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
-                >Telefono</label
-              >
-              <input
-                type="number"
-                class="form-control"
-                id="telefono"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
                 >Email</label
               >
               <input
-                type="text"
+                type="email"
                 class="form-control"
-                id="email"
+                name="emailInicioSesion"
+                id="emailInicioSesion"
                 aria-describedby="emailHelp"
-              />
+              /><br/>
               <label class="input-personalizado" for="exampleInputEmail1"
-                >Contraseña</label
-              >
+                >Contraseña</label>
               <input
                 type="password"
                 class="form-control"
-                id="contrasena"
+                name="contrasenaInicioSesion"
+                id="contrasenaInicioSesion"
                 aria-describedby="emailHelp"
               />
             </div>
             <div class="centrar-boton">
-              <button
-                type="submit"
-                class="btn btn-danger"
-                onclick="validarDatos()"
-              >
-                Enviar
-              </button>
+              <button type="submit" class="btn btn-danger">Enviar</button>
             </div>
           </form>
         </div>
