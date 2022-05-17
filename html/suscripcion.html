@@ -33,10 +33,14 @@
       src="https://kit.fontawesome.com/a61e80b5ac.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Se agrega script de axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script script="javascript">
       const expresionRegular =
         /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-      const validarDatos = () => {
+      const validarDatos = (event) => {
+        event.preventDefault();
         const datos = {
           nombre: document.getElementById("nombre").value,
           apellido: document.getElementById("apellido").value,
@@ -44,7 +48,6 @@
           email: document.getElementById("email").value,
           contrasena: document.getElementById("contrasena").value,
         };
-        console.log(datos.contrasena.length);
         if (!datos.nombre) {
           alert("Debe ingresar nombre");
         } else if (!datos.apellido) {
@@ -56,7 +59,43 @@
         } else if (!datos.contrasena || datos.contrasena.length < 8) {
           alert("Debe ingresar contraseña de 8 caracteres mínimo");
         } else {
-          alert("Registrado correctamente");
+          (async () => {
+            const crearSuscripcion = await fetch(
+              "https://hngtk5lgs5.execute-api.us-west-1.amazonaws.com/handrollCorreos",
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: datos.email }),
+              }
+            );
+            const respuestaApi = await crearSuscripcion.json();
+
+            console.log(respuestaApi);
+          })();
+
+          // llamado de axios
+          /* const crearSuscripcion = async (email) => {
+            await axios
+              .post(
+                "https://hngtk5lgs5.execute-api.us-west-1.amazonaws.com/handrollCorreos",
+                {
+                  email: email,
+                }
+              )
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          };
+          crearSuscripcion(datos.email) */
+          
+          alert(
+            "Se ha enviado un correo de nuestro manejador de correos AWS, revisa tu bandeja de entrada para confirmar"
+          );
         }
       };
     </script>
@@ -106,7 +145,7 @@
       <!-- Formulario -->
       <div class="row">
         <div class="col-lg-12 col-persolanizado">
-          <form class="form-suscripcion mx-auto" action="https://formsubmit.co/di.gieminiani@duocuc.cl" method="POST">
+          <form class="form-suscripcion mx-auto">
             <div class="tittle-personalizado">
               <h1 class="text-center color-base-letra">SUSCRIBETE</h1>
             </div>
@@ -169,7 +208,7 @@
               <button
                 type="submit"
                 class="btn btn-danger"
-                onclick="validarDatos()"
+                onclick="validarDatos(event)"
               >
                 Enviar
               </button>
