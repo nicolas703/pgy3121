@@ -64,7 +64,6 @@ html {
 
 .m-navbar {
     padding: 0.5rem 2rem !important;
-    height: 66px;
 }
 
 .carousel-buttons {
@@ -247,6 +246,8 @@ html {
     margin-bottom: 80px;
 }
 
+
+
 /* Telefono */
 @media (min-width: 0px) and (max-width: 420px) {
     .escritorio {
@@ -282,9 +283,6 @@ html {
         margin-bottom: 36px !important;
     }
 
-    .row-final-noticias {
-        margin-bottom: 58px !important;
-    }
 
     .carrusel-telefono {
         height: 234px;
@@ -366,13 +364,14 @@ html {
         margin-bottom: 36px !important;
     }
 
-    .row-final-noticias {
-        margin-bottom: 58px !important;
-    }
 
     .texto-batiste {
         font-size: 15px;
         width: 85%;
+    }
+
+    .margenUltimoCard{
+        margin-bottom: 56px;
     }
 
 }
