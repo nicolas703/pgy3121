@@ -1,6 +1,4 @@
 html {
-    background-color: #242424;
-    min-height: 100vh;
 }
 
 .centrar {
@@ -12,6 +10,11 @@ html {
     background-color: black !important;
 }
 
+
+.card-titulo{
+    box-shadow:  -10px 8px 80px 113px #000000a3;
+    background: #000000a3;
+}
 .color-base-gris {
     background-color: #242424;
 }
@@ -207,6 +210,10 @@ html {
 
 .noticias {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .sale-arriba {
