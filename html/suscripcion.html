@@ -33,189 +33,234 @@
       src="https://kit.fontawesome.com/a61e80b5ac.js"
       crossorigin="anonymous"
     ></script>
+    <!-- Se agrega script de axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script script="javascript">
-      const expresionRegular =
-        /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
-      const validarDatos = () => {
-        const datos = {
-          nombre: document.getElementById("nombre").value,
-          apellido: document.getElementById("apellido").value,
-          telefono: document.getElementById("telefono").value,
-          email: document.getElementById("email").value,
-          contrasena: document.getElementById("contrasena").value,
+        const expresionRegular =
+          /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,})$/i;
+        const validarDatos = (event) => {
+          event.preventDefault();
+          const datos = {
+            nombre: document.getElementById("nombre").value,
+            apellido: document.getElementById("apellido").value,
+            telefono: document.getElementById("telefono").value,
+            email: document.getElementById("email").value,
+            contrasena: document.getElementById("contrasena").value,
+          };
+          if (!datos.nombre) {
+            alert("Debe ingresar nombre");
+          } else if (!datos.apellido) {
+            alert("Debe ingresar apellido");
+          } else if (!datos.telefono || datos.telefono.length !== 9) {
+            alert("Debe ingresar telefono");
+          } else if (!datos.email || !expresionRegular.test(datos.email)) {
+            alert("Debe ingresar un email válido");
+          } else if (!datos.contrasena || datos.contrasena.length < 8) {
+            alert("Debe ingresar contraseña de 8 caracteres mínimo");
+          } else {
+            (async () => {
+              const crearSuscripcion = await fetch(
+                "https://hngtk5lgs5.execute-api.us-west-1.amazonaws.com/handrollCorreos",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ email: datos.email }),
+                }
+              );
+              const respuestaApi = await crearSuscripcion.json();
+
+              console.log(respuestaApi);
+            })();
+
+            // llamado de axios
+            /* const crearSuscripcion = async (email) => {
+              await axios
+                .post(
+                  "https://hngtk5lgs5.execute-api.us-west-1.amazonaws.com/handrollCorreos",
+                  {
+                    email: email,
+                  }
+                )
+                .then(function (response) {
+                  console.log(response);
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+            };
+            crearSuscripcion(datos.email) */
+            alert(
+              "Se ha enviado un correo de nuestro manejador de correos AWS, revisa tu bandeja de entrada para confirmar"
+            );
+          }
         };
-        console.log(datos.contrasena.length);
-        if (!datos.nombre) {
-          alert("Debe ingresar nombre");
-        } else if (!datos.apellido) {
-          alert("Debe ingresar apellido");
-        } else if (!datos.telefono || datos.telefono.length !== 9) {
-          alert("Debe ingresar telefono");
-        } else if (!datos.email || !expresionRegular.test(datos.email)) {
-          alert("Debe ingresar un email válido");
-        } else if (!datos.contrasena || datos.contrasena.length < 8) {
-          alert("Debe ingresar contraseña de 8 caracteres mínimo");
-        } else {
-          alert("Registrado correctamente");
-        }
-      };
     </script>
   </head>
 
   <body>
-    <div class="container-fluid alto">
-      <!-- Navbar -->
-      <div class="row">
-        <div class="col-lg-12 col-persolanizado">
-          <nav class="color-base navbar navbar-expand-lg navbar-dark m-navbar">
-            <a class="navbar-brand" href="./index.html">MusicRoll</a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarText"
-              aria-controls="navbarText"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="./noticias.html"
-                    >Noticias <span class="sr-only">(current)</span></a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./artistas.html">Artistas</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./suscripcion.html">Únete</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="./nosotros.html">Nosotros</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-      <!-- Formulario -->
-      <div class="row">
-        <div class="col-lg-12 col-persolanizado">
-          <form class="form-suscripcion mx-auto" action="https://formsubmit.co/di.gieminiani@duocuc.cl" method="POST">
-            <div class="tittle-personalizado">
-              <h1 class="text-center color-base-letra">SUSCRIBETE</h1>
-            </div>
-            <div class="form-text-personalizado text-center color-base-letra">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Corrupti, dignissimos nemo ducimus sunt vitae cum quaerat
-                aperiam numquam. Eum, provident laudantium temporibus laborum
-                earum aliquid recusandae tempore cumque! Corrupti, dignissimos.
-              </p>
-            </div>
-            <div class="form-group color-base-letra">
-              <label class="input-personalizado" for="exampleInputEmail1 "
-                >Nombre</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
-                >Apellido</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="apellido"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
-                >Telefono</label
-              >
-              <input
-                type="number"
-                class="form-control"
-                id="telefono"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
-                >Email</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="email"
-                aria-describedby="emailHelp"
-              />
-              <label class="input-personalizado" for="exampleInputEmail1"
-                >Contraseña</label
-              >
-              <input
-                type="password"
-                class="form-control"
-                id="contrasena"
-                aria-describedby="emailHelp"
-              />
-            </div>
-            <div class="centrar-boton">
+    <div class="container-fluid alto containerBlanco">
+      <div class="containerInterior">
+        <!-- Navbar -->
+        <div class="row">
+          <div class="col-lg-12 col-persolanizado">
+            <nav class="color-base navbar navbar-expand-lg navbar-dark m-navbar">
+              <a class="navbar-brand" href="./index.html">MusicRoll</a>
               <button
-                type="submit"
-                class="btn btn-danger"
-                onclick="validarDatos()"
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarText"
+                aria-controls="navbarText"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
               >
-                Enviar
+                <span class="navbar-toggler-icon"></span>
               </button>
-            </div>
-          </form>
+              <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./noticias.html"
+                      >Noticias <span class="sr-only">(current)</span></a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./artistas.html">Artistas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./suscripcion.html">Únete</a>
+                  </li>
+                </ul>
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./inicioSesion.html"
+                      >Iniciar Sesión</a
+                    >
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./nosotros.html">Nosotros</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+          </div>
         </div>
-      </div>
-      <!-- Footer -->
-      <div class="row">
-        <div class="col-persolanizado col-lg-12 footer color-base">
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-twitter"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-facebook"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-instagram"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-discord"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-spotify"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-soundcloud"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-youtube"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-deezer"
-          ></button>
-          <button
-            type="button"
-            class="btn btn-outline-light logo fa-brands fa-apple"
-          ></button>
+        <!-- Formulario -->
+        <div class="row">
+          <div class="col-lg-12 col-persolanizado">
+            <form class="form-suscripcion mx-auto">
+              <div class="tittle-personalizado">
+                <h1 class="text-center color-base-letra">SUSCRIBETE</h1>
+              </div>
+              <div class="form-text-personalizado text-center color-base-letra">
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Corrupti, dignissimos nemo ducimus sunt vitae cum quaerat
+                  aperiam numquam. Eum, provident laudantium temporibus laborum
+                  earum aliquid recusandae tempore cumque! Corrupti, dignissimos.
+                </p>
+              </div>
+              <div class="form-group color-base-letra">
+                <label class="input-personalizado" for="exampleInputEmail1 "
+                  >Nombre</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  aria-describedby="emailHelp"
+                />
+                <label class="input-personalizado" for="exampleInputEmail1"
+                  >Apellido</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="apellido"
+                  aria-describedby="emailHelp"
+                />
+                <label class="input-personalizado" for="exampleInputEmail1"
+                  >Telefono</label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  id="telefono"
+                  aria-describedby="emailHelp"
+                />
+                <label class="input-personalizado" for="exampleInputEmail1"
+                  >Email</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  aria-describedby="emailHelp"
+                />
+                <label class="input-personalizado" for="exampleInputEmail1"
+                  >Contraseña</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="contrasena"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="centrar-boton">
+                <button
+                  type="submit"
+                  class="btn btn-danger"
+                  onclick="validarDatos(event)"
+                >
+                  Enviar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Footer -->
+        <div class="row">
+          <div class="col-persolanizado col-lg-12 footer color-base">
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-twitter"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-facebook"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-instagram"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-discord"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-spotify"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-soundcloud"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-youtube"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-deezer"
+            ></button>
+            <button
+              type="button"
+              class="btn btn-outline-light logo fa-brands fa-apple"
+            ></button>
+          </div>
         </div>
       </div>
     </div>

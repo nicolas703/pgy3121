@@ -1,5 +1,6 @@
 html {
     background-color: #242424;
+    min-height: 100vh;
 }
 
 .centrar {
@@ -38,6 +39,7 @@ html {
     justify-content: center;
     height: 60px !important;
     align-items: center;
+    background-color: white !important;
 }
 
 .nav-bar-css {
@@ -59,6 +61,7 @@ html {
 
 .m-navbar {
     padding: 0.5rem 2rem !important;
+    height: 66px;
 }
 
 .carousel-buttons {
@@ -226,8 +229,16 @@ html {
     display: none !important;
 }
 
+.containerBlanco {
+    border: #FFFFFF 10px solid !important;
+}
 
-.card-tex,t carrusel
+.containerInterior{
+    overflow: hidden;
+    border-radius: 30px;
+    margin-top: 10px;
+    margin-bottom: 80px;
+}
 
 /* Telefono */
 @media (min-width: 0px) and (max-width: 420px) {
