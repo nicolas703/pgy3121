@@ -57,3 +57,12 @@ sr.reveal('.sale-arriba', {
     distance: '200px',
 })
 
+sr.reveal('.logo-music-roll', {
+    duration: 1000,
+    rotate: {
+        x: 100,
+        y: 100,
+        z: 100
+    }
+})
+
